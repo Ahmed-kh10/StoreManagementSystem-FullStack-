@@ -1,0 +1,11 @@
+{
+  "StripeSettings": {
+    "SecretKey": "",
+    "PublishableKey": "",
+    "WebhookSecret": ""
+  },
+
+  "JwtSettings": {
+    "Key": ""
+  }
+}

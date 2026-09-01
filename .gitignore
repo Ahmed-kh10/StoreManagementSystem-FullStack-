@@ -1,0 +1,26 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Test results
+TestResults/
+
+# NuGet
+packages/
+
+# Logs
+*.log
+
+# Local configuration
+appsettings.Local.json
+
+# OS
+.DS_Store
+Thumbs.db
