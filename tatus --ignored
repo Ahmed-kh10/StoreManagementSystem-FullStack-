@@ -1,0 +1,28 @@
+[1mdiff --git a/Store.Application/DTOs/Auth/LoginDto.cs b/Store.Application/DTOs/Auth/LoginDto.cs[m
+[1mindex c5907c5..ced5667 100644[m
+[1m--- a/Store.Application/DTOs/Auth/LoginDto.cs[m
+[1m+++ b/Store.Application/DTOs/Auth/LoginDto.cs[m
+[36m@@ -5,21 +5,4 @@[m
+         public string Email { get; set; } = default!;[m
+         public string Password { get; set; } = default!;[m
+     }[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[32m+[m[32m}[m
+\ No newline at end of file[m

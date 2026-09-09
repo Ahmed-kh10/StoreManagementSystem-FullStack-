@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Store.Application.DTOs.Baskets;
+using Store.Application.DTOs.Brands;
+using Store.Application.DTOs.Categories;
 using Store.Application.DTOs.Orders;
 using Store.Application.DTOs.Products;
 using Store.Domain.Entities;
@@ -20,6 +22,9 @@ namespace Store.Application.Mapping
                     opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<CreateProductDto, Product>();
+
+            CreateMap<Brand, BrandDto>();
+            CreateMap<Category, CategoryDto>();
 
             CreateMap<UpdateProductDto, Product>();
 

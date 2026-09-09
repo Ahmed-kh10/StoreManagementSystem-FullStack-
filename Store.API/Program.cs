@@ -133,12 +133,22 @@ public class Program
         {
             options.AddPolicy("AllowFrontend", policy =>
             {
-                policy
-                    .WithOrigins(
-                        "http://localhost:3000",
-                        "https://localhost:3000")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                if (builder.Environment.IsDevelopment())
+                {
+                    policy
+                        .SetIsOriginAllowed(origin =>
+                            Uri.TryCreate(origin, UriKind.Absolute, out var uri) &&
+                            uri.Host == "localhost")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                }
+                else
+                {
+                    policy
+                        .WithOrigins("https://your-production-domain.com")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                }
             });
         });
 
@@ -268,6 +278,8 @@ public class Program
         // =========================
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<ITokenService, TokenService>();
+        builder.Services.AddScoped<IBrandService, BrandService>();
+        builder.Services.AddScoped<ICategoryService, CategoryService>();
 
         // =========================
         // AutoMapper
@@ -372,17 +384,19 @@ public class Program
         // =========================
         // HTTPS
         // =========================
-        app.UseHttpsRedirection();
+        app.UseStaticFiles();
 
         // =========================
         // CORS
         // =========================
         app.UseCors("AllowFrontend");
 
+
         // =========================
-        // HTTP Logging
+        // HTTPS
         // =========================
-        app.UseHttpLogging();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
 
         // =========================
         // Authentication

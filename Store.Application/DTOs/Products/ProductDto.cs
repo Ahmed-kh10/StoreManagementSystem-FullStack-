@@ -8,7 +8,9 @@
         public decimal Price { get; set; }
         public int Stock { get; set; }
         public string ImageUrl { get; set; } = default!;
+        public int BrandId { get; set; }
         public string BrandName { get; set; } = default!;
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; } = default!;
     }
 }

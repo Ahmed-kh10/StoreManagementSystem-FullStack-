@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Store.Application.DTOs.Products;
 using Store.Application.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Store.API.Controllers
 {
@@ -92,6 +93,41 @@ namespace Store.API.Controllers
             }
 
             return NoContent();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost("upload-image")]
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("لم يتم اختيار أي ملف.");
+            }
+
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+            if (!allowedExtensions.Contains(extension))
+            {
+                return BadRequest("نوع الملف غير مدعوم. استخدم jpg, jpeg, png أو webp.");
+            }
+
+            var fileName = $"{Guid.NewGuid()}{extension}";
+
+            var uploadsFolder = Path.Combine(
+                Directory.GetCurrentDirectory(), "wwwroot", "images", "products");
+
+            Directory.CreateDirectory(uploadsFolder);
+
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            var imageUrl = $"{Request.Scheme}://{Request.Host}/images/products/{fileName}";
+
+            return Ok(new { imageUrl });
         }
     }
 }
