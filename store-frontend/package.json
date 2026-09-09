@@ -1,0 +1,43 @@
+{
+  "name": "store-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "kill-port 3000 5173",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@stripe/react-stripe-js": "^6.9.0",
+    "@stripe/stripe-js": "^9.15.0",
+    "@tanstack/react-query": "^5.102.8",
+    "axios": "^1.20.0",
+    "i18next": "^26.4.2",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "lucide-react": "^1.41.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.87.0",
+    "react-i18next": "^17.0.13",
+    "react-router-dom": "^7.18.3",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "kill-port": "^2.0.1",
+    "oxlint": "^1.79.0",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2"
+  }
+}
